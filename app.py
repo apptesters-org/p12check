@@ -14,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Device(db.Model):
+    __tablename__ = 'devices'  # Update the table name here
     id = db.Column(db.Integer, primary_key=True)
     udid = db.Column(db.String, unique=True, nullable=False)
     certificate_purchase_date = db.Column(db.Date, nullable=False)
@@ -21,6 +22,10 @@ class Device(db.Model):
     certificate_expiry_date = db.Column(db.Date, nullable=False)
     developer_account_name = db.Column(db.String, nullable=False)
     developer_account_renewal_date = db.Column(db.Date, nullable=False)
+
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 @app.route('/')
 def index():
@@ -36,6 +41,4 @@ def get_info():
         return "Device not found"
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
