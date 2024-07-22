@@ -15,7 +15,6 @@ db = SQLAlchemy(app)
 
 class Device(db.Model):
     __tablename__ = 'devices'
-    id = db.Column(db.Integer, primary_key=True)
     udid = db.Column(db.String, unique=True, nullable=False)
     certificate_purchase_date = db.Column(db.Date, nullable=False)
     plan = db.Column(db.String, nullable=False)
