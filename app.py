@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime  # Keep this import if needed
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -33,7 +33,7 @@ def get_info():
     if device:
         return render_template('info.html', device=device)
     else:
-        return "Device not found", 404
+        return render_template('notfound.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
