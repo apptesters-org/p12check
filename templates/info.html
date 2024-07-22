@@ -4,14 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: black;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 1.50rem;
+        }
+        footer {
+            background-color: black;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-top: auto;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .info-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
-    <h1>Device Information</h1>
-    <p>UDID: {{ device.udid }}</p>
-    <p>Certificate Purchase Date: {{ device.certificate_purchase_date }}</p>
-    <p>Plan: {{ device.plan }}</p>
-    <p>Certificate Expiry Date: {{ device.certificate_expiry_date }}</p>
-    <p>Developer Account Name: {{ device.developer_account_name }}</p>
-    <p>Developer Account Renewal Date: {{ device.developer_account_renewal_date }}</p>
+    <header>
+        <h1>AppTesters UDID Check</h1>
+    </header>
+    <main>
+        <div class="info-container">
+            <h2>Device Information</h2>
+            <p><strong>UDID:</strong> {{ device.udid }}</p>
+            <p><strong>Certificate Purchase Date:</strong> {{ device.certificate_purchase_date }}</p>
+            <p><strong>Plan:</strong> {{ device.plan }}</p>
+            <p><strong>Certificate Expiry Date:</strong> {{ device.certificate_expiry_date }}</p>
+            <p><strong>Developer Account Name:</strong> {{ device.developer_account_name }}</p>
+            <p><strong>Developer Account Renewal Date:</strong> {{ device.developer_account_renewal_date }}</p>
+        </div>
+    </main>
+    <footer>
+        <a href="https://t.me/appletesters">Contact Support</a>
+        <a href="https://apptesters.org/purchase-certificate/">Buy Lifetime Certificate</a>
+    </footer>
 </body>
 </html>
