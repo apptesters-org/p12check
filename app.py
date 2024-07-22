@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Use the os.path.join for better compatibility
 db_path = os.path.join(os.path.expanduser('~'), 'Library', 'Mobile Documents', 'com~apple~CloudDocs', 'Downloads', 'udidcheck', 'device_data.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///device_data.db'
 
 db = SQLAlchemy(app)
 
