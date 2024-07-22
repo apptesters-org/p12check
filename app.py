@@ -1,23 +1,26 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# Use the os.path.join for better compatibility
-db_path = os.path.join(os.path.expanduser('~'), 'Library', 'Mobile Documents', 'com~apple~CloudDocs', 'Downloads', 'udidcheck', 'device_data.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///device_data.db'
+# Get the absolute path of the database file
+basedir = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(basedir, 'device_data.db')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 class Device(db.Model):
-    __tablename__ = 'devices'
-    udid = db.Column(db.String, primary_key=True)
-    certificate_purchase_date = db.Column(db.String)
-    plan = db.Column(db.String)
-    certificate_expiry_date = db.Column(db.String)
-    developer_account_name = db.Column(db.String)
-    developer_account_renewal_date = db.Column(db.String)
+    id = db.Column(db.Integer, primary_key=True)
+    udid = db.Column(db.String, unique=True, nullable=False)
+    certificate_purchase_date = db.Column(db.Date, nullable=False)
+    plan = db.Column(db.String, nullable=False)
+    certificate_expiry_date = db.Column(db.Date, nullable=False)
+    developer_account_name = db.Column(db.String, nullable=False)
+    developer_account_renewal_date = db.Column(db.Date, nullable=False)
 
 @app.route('/')
 def index():
@@ -30,7 +33,9 @@ def get_info():
     if device:
         return render_template('info.html', device=device)
     else:
-        return "Device not found", 404
+        return "Device not found"
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
