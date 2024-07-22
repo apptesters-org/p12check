@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Device(db.Model):
-    __tablename__ = 'devices'  # Update the table name here
+    __tablename__ = 'devices'  # Ensure the correct table name
     id = db.Column(db.Integer, primary_key=True)
     udid = db.Column(db.String, unique=True, nullable=False)
     certificate_purchase_date = db.Column(db.Date, nullable=False)
