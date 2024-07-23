@@ -75,6 +75,19 @@
             font-size: 1rem;
             line-height: 1.5;
         }
+        .status-icon {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+        }
+        .status-icon.tick {
+            background-color: green;
+        }
+        .status-icon.cross {
+            background-color: red;
+        }
         .check-again-button {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -104,11 +117,31 @@
             </div>
             <h2>Device Information</h2>
             <p><strong>UDID:</strong> {{ device.udid }}</p>
-            <p><strong>Certificate Purchase Date:</strong> {{ device.certificate_purchase_date }}</p>
-            <p><strong>Plan:</strong> {{ device.plan }}</p>
-            <p><strong>Certificate Expiry Date:</strong> {{ device.certificate_expiry_date }}</p>
-            <p><strong>Developer Account Name:</strong> {{ device.developer_account_name }}</p>
-            <p><strong>Developer Account Renewal Date:</strong> {{ device.developer_account_renewal_date }}</p>
+            <p>
+                <strong>Certificate Purchase Date:</strong> {{ device.certificate_purchase_date }}
+            </p>
+            <p>
+                <strong>Plan:</strong> {{ device.plan }}
+            </p>
+            <p>
+                <strong>Certificate Expiry Date:</strong> {{ device.certificate_expiry_date }}
+                {% if device.certificate_expiry_date < current_date %}
+                <span class="status-icon cross"></span>
+                {% else %}
+                <span class="status-icon tick"></span>
+                {% endif %}
+            </p>
+            <p>
+                <strong>Developer Account Name:</strong> {{ device.developer_account_name }}
+            </p>
+            <p>
+                <strong>Developer Account Renewal Date:</strong> {{ device.developer_account_renewal_date }}
+                {% if device.developer_account_renewal_date < current_date %}
+                <span class="status-icon cross"></span>
+                {% else %}
+                <span class="status-icon tick"></span>
+                {% endif %}
+            </p>
             <a href="https://udid.apptesters.org/" class="check-again-button">Check Again</a>
         </div>
     </main>

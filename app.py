@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime  # Keep this import if needed
+from datetime import datetime
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -31,7 +31,8 @@ def get_info():
     udid = request.form['udid']
     device = Device.query.filter_by(udid=udid).first()
     if device:
-        return render_template('info.html', device=device)
+        current_date = datetime.now().date()
+        return render_template('info.html', device=device, current_date=current_date)
     else:
         return render_template('notfound.html'), 404
 
