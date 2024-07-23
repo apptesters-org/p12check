@@ -53,12 +53,22 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 600px;
-            text-align: center; /* Center text inside the container */
+            text-align: center;
+        }
+        .info-text-box {
+            background-color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .info-text-box strong {
+            font-weight: bold;
         }
         h2 {
             font-size: 1.75rem;
             margin-bottom: 1rem;
-            text-align: center; /* Center the title text */
+            text-align: center;
         }
         p {
             margin: 0.5rem 0;
@@ -78,7 +88,7 @@
             text-align: center;
         }
         .check-again-button:hover {
-            background-color: #1f7dce; /* Darker shade for hover effect */
+            background-color: #1f7dce;
         }
     </style>
 </head>
@@ -88,6 +98,10 @@
     </header>
     <main>
         <div class="info-container">
+            <div class="info-text-box">
+                <strong>Essential Plan</strong> users, your renewal is due before the Certificate Expiry Date. You need to pay the plan amount to keep the certificate active for the next year.<br><br>
+                <strong>Premium</strong> and <strong>Ultimate Plan</strong> users, your free renewal is due before the Developer Account Renewal Date. You will receive an email with instructions on how to renew the certificate for the next year.
+            </div>
             <h2>Device Information</h2>
             <p><strong>UDID:</strong> {{ device.udid }}</p>
             <p><strong>Certificate Purchase Date:</strong> {{ device.certificate_purchase_date }}</p>
