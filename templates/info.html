@@ -65,6 +65,29 @@
         .info-text-box strong {
             font-weight: bold;
         }
+        .status-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .status-legend div {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+        }
+        .status-legend span {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .status-legend .active {
+            background-color: green;
+        }
+        .status-legend .expired {
+            background-color: red;
+        }
         h2 {
             font-size: 1.75rem;
             margin-bottom: 1rem;
@@ -114,6 +137,14 @@
             <div class="info-text-box">
                 <strong>Essential Plan</strong> users, your renewal is due before the Certificate Expiry Date. You need to pay the plan amount to keep the certificate active for the next year.<br><br>
                 <strong>Premium</strong> and <strong>Ultimate Plan</strong> users, your free renewal is due before the Developer Account Renewal Date. You will receive an email with instructions on how to renew the certificate for the next year.
+                <div class="status-legend">
+                    <div>
+                        <span class="active"></span>Active
+                    </div>
+                    <div>
+                        <span class="expired"></span>Expired
+                    </div>
+                </div>
             </div>
             <h2>Device Information</h2>
             <p><strong>UDID:</strong> {{ device.udid }}</p>
